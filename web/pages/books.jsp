@@ -8,9 +8,12 @@
 
 <jsp:useBean id="bookList" class="com.vladavekin.web.beans.BookList" scope="page"/>
 
-<%@include file="../WEB-INF/jspf/letters.jsp"%>
+<%@include file="../WEB-INF/jspf/letters.jspf"%>
 
 <div class="book_list">
+
+
+
     <%
         ArrayList<Book> list = null;
 
@@ -19,7 +22,7 @@
             list = bookList.getBooksByGenre(genreId);
         } else if (request.getParameter("letter") != null) {
             String letter = request.getParameter("letter");
-            list = bookList.getBookByLatter("letter");
+            list = bookList.getBookByLatter(letter);
         } else if (request.getParameter("search_string") != null) {
             String searchStr = request.getParameter("search_string");
             SearchType type = SearchType.TITLE;
@@ -31,12 +34,12 @@
                 list = bookList.getBookBySearch(searchStr, type);
             }
         }
-
     %>
+    <h5 style="text-align: left; margin-top:20px;">Найдено книг: <%=list.size() %> </h5>
+    <%
+        session.setAttribute("currentBookList", list);
+        for (Book book : list) {
 
-    <h5 style="text-align: left; margin-top:20px;">Название книги; <%=list.size()%></h5>
-            <% session.setAttribute("currentBookList", list);
-                for (Book book : list) {
     %>
 
     <div class="book_info">
@@ -44,15 +47,15 @@
             <p> <%=book.getName()%></p>
         </div>
         <div class="book_image">
-            <img src="<%=request.getContextPath()%>/ShowImage?index=<%=list.indexOf(book) %>" height="250" width="190" alt="Обложка"/>
+            <a href="#"><img src="<%=request.getContextPath()%>/ShowImage?index=<%=list.indexOf(book)%>" height="250" width="190" alt="Обложка"/></a>
         </div>
         <div class="book_details">
             <br><strong>ISBN:</strong> <%=book.getIsbn()%>
-            <br><strong>Издательство:</strong> <%=book.getPublisher() %>
+            <br><strong>Издательство:</strong> <%=book.getPublisher()%>
 
-            <br><strong>Количество страниц:</strong> <%=book.getPageCount() %>
-            <br><strong>Год издания:</strong> <%=book.getPublishDate() %>
-            <br><strong>Автор:</strong> <%=book.getAuthor() %>
+            <br><strong>Количество страниц:</strong> <%=book.getPageCount()%>
+            <br><strong>Год издания:</strong> <%=book.getPublishDate()%>
+            <br><strong>Автор:</strong> <%=book.getAuthor()%>
             <p style="margin:10px;"> <a href="#">Читать</a></p>
         </div>
     </div>
