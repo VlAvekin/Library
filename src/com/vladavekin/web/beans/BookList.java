@@ -1,6 +1,7 @@
 package com.vladavekin.web.beans;
 
 import com.vladavekin.web.db.Database;
+import com.vladavekin.web.enums.SearchType;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -80,8 +81,30 @@ public class BookList {
 
     }
 
+    public ArrayList<Book> getBookBySearch(final String search,
+                                            final SearchType type){
+        StringBuilder sql = new StringBuilder("select b.id,b.name,b.isbn,b.page_count,b.publish_year, p.name as publisher, a.fio as author, g.name as genre, b.image from book b "
+                + "inner join author a on b.author_id=a.id "
+                + "inner join genre g on b.genre_id=g.id "
+                + "inner join publisher p on b.publisher_id=p.id ");
+
+        if (type == SearchType.AUTHOR){
+            sql.append("where lower(a.fio) like '%" + search.toLowerCase() + "%' order by b.name" );
+        } else if (type == SearchType.TITLE){
+            sql.append("where lower(a.fio) like '%" + search.toLowerCase() + "%' order by b.name" );
+        }
+        sql.append("limit 0,5");
+
+        return  getBooks(sql.toString());
+    }
+
     public ArrayList<Book> getBookByLatter(final String letter){
 
-        return null;
+        return getBooks("select b.id,b.name,b.isbn,b.page_count,b.publish_year, p.name as publisher, a.fio as author, g.name as genre, b.image from book b "
+                + "inner join author a on b.author_id=a.id "
+                + "inner join genre g on b.genre_id=g.id "
+                + "inner join publisher p on b.publisher_id=p.id "
+                + "where substr(b.name,1,1)='" + letter + " order by b.name "
+                + "limit 0,5");
     }
 }

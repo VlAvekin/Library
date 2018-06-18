@@ -1,5 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.vladavekin.web.beans.Book"%>
+<%@ page import="com.vladavekin.web.enums.SearchType" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -7,7 +8,7 @@
 
 <jsp:useBean id="bookList" class="com.vladavekin.web.beans.BookList" scope="page"/>
 
-<%@include file=""%>
+<%@include file="../WEB-INF/jspf/letters.jsp"%>
 
 <div class="book_list">
     <%
@@ -18,9 +19,24 @@
             list = bookList.getBooksByGenre(genreId);
         } else if (request.getParameter("letter") != null) {
             String letter = request.getParameter("letter");
-            list = bookList
+            list = bookList.getBookByLatter("letter");
+        } else if (request.getParameter("search_string") != null) {
+            String searchStr = request.getParameter("search_string");
+            SearchType type = SearchType.TITLE;
+            if (request.getParameter("search_option").equals("Автор")) {
+                type = SearchType.AUTHOR;
+            }
+
+            if (searchStr != null && !searchStr.trim().equals("")) {
+                list = bookList.getBookBySearch(searchStr, type);
+            }
         }
 
+    %>
+
+    <h5 style="text-align: left; margin-top:20px;">Название книги; <%=list.size()%></h5>
+            <% session.setAttribute("currentBookList", list);
+                for (Book book : list) {
     %>
 
     <div class="book_info">

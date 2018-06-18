@@ -1,6 +1,6 @@
-ul.nav a, ul.nav a:visited { 
+ul.nav a, ul.nav a:visited {
     padding: 5px 5px 5px 15px;
-    display: block; 
+    display: block;
     text-decoration: none;
     color: #000;
 }
@@ -14,38 +14,38 @@ body {
     height: 100%;
 }
 
-ul, ol, dl { 
+ul, ol, dl {
     padding: 0;
     margin: 0;
 }
 h1, h2, h3, h4, h5, h6, p {
-    margin-top: 0;	 
+    margin-top: 0;
     padding-right: 15px;
-    padding-left: 15px; 
+    padding-left: 15px;
 }
 
-a img { 
+a img {
     border: none;
 }
 
 
 a:link {
     color:#414958;
-    text-decoration: underline; 
+    text-decoration: underline;
 }
 a:visited {
     color: #4E5869;
     text-decoration: underline;
 }
-a:hover, a:active, a:focus { 
+a:hover, a:active, a:focus {
     text-decoration: none;
 }
 
 .container {
-    width: 1200px;
+    width: 1000px;
     background-color: #FFFFFF;
-    margin: 0 auto; 
-    
+    margin: 0 auto;
+
 }
 
 
@@ -68,9 +68,9 @@ a:hover, a:active, a:focus {
 
 
 ul.nav {
-    list-style: none; 
+    list-style: none;
 
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
 }
 ul.nav li {
 
@@ -135,15 +135,15 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
     text-decoration:none;
     text-shadow:1px 1px 0px #528ecc;
 }.search_button:hover {
-    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
-    background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
-    background-color:#378de5;
-    cursor:pointer;
-}.search_button:active {
-    position:relative;
-    top:1px;
-}
+     background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
+     background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
+     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
+     background-color:#378de5;
+     cursor:pointer;
+ }.search_button:active {
+      position:relative;
+      top:1px;
+  }
 
 
 
@@ -163,8 +163,8 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
 
 .book_title p{
     color:#378de5 ;
-    font-weight: bold; 
-    font-size: 15px; 
+    font-weight: bold;
+    font-size: 15px;
     padding: 0;
     margin: 0;
 }
@@ -191,4 +191,16 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
 .book_details{
     float:left;
     margin-top: 10px;
+}
+
+.letters{
+    float:left;
+    height: 20px;
+    margin: 10px;
+}
+
+.letters a{
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
 }
